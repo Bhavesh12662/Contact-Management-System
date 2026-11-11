@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Contactly contact manager with CRUD, search, filters and JSON backup">
+<title>Contactly | Contact Manager</title>
+<link rel="stylesheet" href="css/styles.css">
+<script src="js/app.js" defer></script>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="#"><span class="brand-icon">C</span> contactly<span class="dot">.</span></a>
+  <p class="eyebrow">WORKSPACE</p>
+  <button class="nav active" id="allNav">▦ <span>All contacts</span><b id="navCount">0</b></button>
+  <button class="nav" id="favNav">☆ <span>Favorites</span></button>
+  <div class="sidebar-note"><b>Private by default</b><p>Your contacts are saved in this browser, not uploaded to a server.</p></div>
+  <div class="account"><span class="account-avatar">B</span><span><b>My Workspace</b><small>Personal account</small></span></div>
+</aside>
+<main>
+<header class="topbar"><span>Workspace / <b>Contacts</b></span><div><button class="btn outline" id="themeBtn">◐ Theme</button><button class="btn primary" id="addTop">＋ Add contact</button></div></header>
+<section class="heading"><div><p class="eyebrow">YOUR PEOPLE, ORGANIZED</p><h1>Contacts<span class="dot">.</span></h1><p class="muted">Keep the people who matter close and organized.</p></div><span class="muted" id="today"></span></section>
+<section class="stats">
+ <article><span>Total contacts</span><strong id="total">0</strong><small>People in your workspace</small></article>
+ <article><span>Favorites</span><strong id="favorites">0</strong><small>Your important people</small></article>
+ <article><span>Companies</span><strong id="companies">0</strong><small>Unique organizations</small></article>
+</section>
+<section class="panel">
+ <div class="panel-head"><div><h2 id="listHeading">All contacts <em id="count">0</em></h2><p class="muted">Manage and organize your connections.</p></div>
+ <div class="tools"><button class="btn outline" id="importBtn">↑ Import JSON</button><button class="btn outline" id="exportBtn">↓ Export JSON</button><input id="fileInput" type="file" accept=".json,application/json" hidden></div></div>
+ <div class="toolbar"><label class="search">⌕ <input id="search" type="search" placeholder="Search name, email, phone or company..."></label>
+ <div class="filters"><select id="groupFilter"><option value="all">All groups</option><option>Work</option><option>Personal</option><option>Family</option><option>Other</option></select>
+ <select id="sort"><option value="az">Name A–Z</option><option value="za">Name Z–A</option><option value="new">Recently added</option><option value="company">Company</option></select></div></div>
+ <div class="table-wrap"><table><thead><tr><th>NAME</th><th>EMAIL ADDRESS</th><th>PHONE</th><th>COMPANY</th><th>GROUP</th><th>ACTIONS</th></tr></thead><tbody id="rows"></tbody></table>
+ <div class="empty" id="empty" hidden><div class="empty-icon">♧</div><h3 id="emptyTitle">No contacts yet</h3><p id="emptyText">Add your first contact to start building your address book.</p><button class="btn primary" id="emptyAdd">＋ Add your first contact</button></div></div>
+ <div class="table-foot"><span id="showing">Showing 0 contacts</span><span>● Saved locally</span></div>
+</section>
+<footer>Made to keep your connections close. <span>Contactly © <span id="year"></span></span></footer>
+</main></div>
+<div class="backdrop" id="modal" hidden><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+ <div class="dialog-head"><div><p class="eyebrow">CONTACT DETAILS</p><h2 id="modalTitle">Add a contact</h2><p class="muted">Fill in the details below. Name is required.</p></div><button class="x" id="close">×</button></div>
+ <form id="form"><input type="hidden" id="id">
+ <div class="form-grid">
+ <label class="field wide">Full name *<input id="name" maxlength="70" required placeholder="e.g. Alex Morgan"><small id="nameErr"></small></label>
+ <label class="field">Email address<input id="email" type="email" maxlength="120" placeholder="alex@example.com"><small id="emailErr"></small></label>
+ <label class="field">Phone number<input id="phone" type="tel" maxlength="25" placeholder="+91 98765 43210"><small id="phoneErr"></small></label>
+ <label class="field">Company<input id="company" maxlength="80" placeholder="Company name"></label>
+ <label class="field">Job title<input id="jobTitle" maxlength="80" placeholder="e.g. Product Designer"></label>
+ <label class="field">Group<select id="group"><option>Work</option><option>Personal</option><option>Family</option><option>Other</option></select></label>
+ <label class="field">Birthday<input id="birthday" type="date"></label>
+ <label class="field wide">Notes<textarea id="notes" rows="3" maxlength="500" placeholder="Add useful details..."></textarea></label>
+ </div><div class="dialog-foot"><button type="button" class="btn outline" id="cancel">Cancel</button><button class="btn primary" type="submit">✓ Save contact</button></div>
+ </form></section></div>
+<div class="toast-region" id="toasts" aria-live="polite"></div>
+</body></html>
